@@ -39,6 +39,23 @@ function getOrderByClientId(clientId,callback){
         return callback(null,data);
     });
 }
+
+function getNumberOrdersByCLients(clientId,callback){
+    const sql="SELECT COUNT(*) as numberOfOrders from orders WHERE client_id=?";
+    pool.query(sql, [clientId], (err, data)=>{
+        if(err){
+            console.log('ERROR IN GET NUMBER OF ORDERS BY CLIENT',err);
+            return callback(err,null);
+            }
+            if(!data || !data.length>0){
+                return callback("no orders found for this client",null);
+                }
+                let count=data[0].numberOfOrders;
+                return callback(null,count);
+                })
+            };
+
+
 ///
 function addNewOrder(clientId,productId,callback){
     const sql ="INSERT INTO orders (client_id,product_id,order_date) values (?,?,?)";
@@ -59,7 +76,8 @@ module.exports = {
     getAllOrders,
     addNewOrder,
     getOrderById,
-    getOrderByClientId
+    getOrderByClientId,
+    getNumberOrdersByCLients
 };
 
 console.log("In ordersModel.js");

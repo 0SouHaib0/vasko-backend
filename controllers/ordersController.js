@@ -33,9 +33,21 @@ function getOrderByClientById(req,res){
     })
 }
 
+function getNumberOrdersByCLients(req,res){
+    let clientId= req.query.client_id;
+    ordersModel.getNumberOfOrdersPerClients(clientId,(err,data)=>{
+        if(err){
+            console.error(err);
+            return res.status(500).json({error:"Internal server error"})
+            }
+            return res.json(data);
+            })
+}
+
 module.exports = {
     getAllOrders,
     getOrderByClientById,
     getOrderById,
+    getNumberOrdersByCLients
     
 };
