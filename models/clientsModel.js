@@ -21,12 +21,12 @@ function addClient(name,email,phone,callback){
        
 }
 function getClientById(clientId,callback){
-    const sql="SELECT * CLIENTS WHERE id = ?";
+    const sql="SELECT * From CLIENTS WHERE id = ?";
     pool.query(sql,[clientId],(err,data)=>{
         if(err){
             return callback(err,null);
         } if (data.length === 0) {
-            return callback("Order not found", null);
+            return callback("client not found", null);
         }
         return callback(null,data[0]);
     })

@@ -18,6 +18,9 @@ function getClientById(req,res){
             console.log(err);
             return res.status(500).json({ error: "Internal Server Error" });
     }
+    if (!data) {
+        return res.status(404).json({ error: "Client not found" });
+      }
     return res.json(data);
 });
 }
