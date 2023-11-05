@@ -13,7 +13,7 @@ function getAllOrders(callback) {
 // get order by it id
 function getOrderById(orderId,callback) {
     const sql = "SELECT * FROM orders where id = ?";
-    pool.query(sql,[id], (err, data) => {
+    pool.query(sql,[orderId], (err, data) => {
         if (err) {
             console.error("Error in getorderBy id:", err);
             return callback(err, null);
@@ -48,7 +48,7 @@ function getNumberOrdersByCLients(clientId,callback){
             return callback(err,null);
             }
             if(!data || !data.length>0){
-                return callback("no orders found for this client",null);
+                return callback("number is undefined",null);
                 }
                 let count=data[0].numberOfOrders;
                 return callback(null,count);
