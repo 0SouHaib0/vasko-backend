@@ -44,10 +44,23 @@ function getNumberOrdersByCLients(req,res){
             })
 }
 
+function addNewOrder(req,res){
+    const {clientId,qtVeste,qtGilet,qtPants } = req.body;
+
+    ordersModel.addNewOrder(clientId,qtVeste,qtGilet,qtPants,(err,data)=>{
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
+        return res.json({ message: "order created successfully", id: data });
+    })
+}
+
 module.exports = {
     getAllOrders,
     getOrderByClientById,
     getOrderById,
-    getNumberOrdersByCLients
+    getNumberOrdersByCLients,
+    addNewOrder
     
 };

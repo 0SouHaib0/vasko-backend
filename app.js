@@ -9,12 +9,10 @@ app.use(cors());
 
 const clientsRouter = require("./routes/clients");
 const ordersRouter = require("./routes/orders");
-const productsRouter = require("./routes/products");
 const administratorRouter = require("./routes/admin"); // Import your router
 
 app.use("/clients", clientsRouter);
 app.use("/orders", ordersRouter);
-app.use("/products", productsRouter);
 app.use("/", administratorRouter); // Use the router at the root path
 
 const port = process.env.PORT || 8081;

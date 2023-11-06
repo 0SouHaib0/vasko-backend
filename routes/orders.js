@@ -7,5 +7,6 @@ router.get('/number-by-client', ordersController.getNumberOrdersByCLients);
 router.get('/by-client', ordersController.getOrderByClientById);
 router.get('/:id', ordersController.getOrderById);
 
+router.post("/addNewOrder",ordersController.addNewOrder);
 
 module.exports = router;

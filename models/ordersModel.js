@@ -30,7 +30,7 @@ function getOrderByClientId(clientId,callback){
     const sql="SELECT * FROM orders where client_id =?";
     pool.query(sql, [clientId], (err, data)=>{
         if(err){
-            console.error("Error in getorder by client id",err);
+            console.error("Error in get order by client id",err);
             return callback(err,null);
         }
         if(data.length === 0){
@@ -57,12 +57,12 @@ function getNumberOrdersByCLients(clientId,callback){
 
 
 ///
-function addNewOrder(clientId,productId,callback){
-    const sql ="INSERT INTO orders (client_id,product_id,order_date) values (?,?,?)";
+function addNewOrder(clientId,qtVeste,qtGilet,qtPants,callback){
+    const sql ="INSERT INTO orders (client_id,order_date,quantity_veste,quantity_gilet,quantity_pants) values (?,?,?,?,?)";
     const currentDate= new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 
-    pool.query(sql,[clientId,productId,formattedDate],(err,data)=>{
+    pool.query(sql,[clientId,formattedDate,qtVeste,qtGilet,qtPants],(err,data)=>{
         if (err) {
             return callback(err, null);
         }
