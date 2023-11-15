@@ -14,6 +14,18 @@ function getGiletMsByClientId(clientId,callback){
     });
 }
 
+function addGiletMs(clientId, poitrine,demi_ceinture,demi_hanche,longueur_gilet	, callback) {
+    const sql = "INSERT INTO giletmeasurments ( poitrine,demi_ceinture,demi_hanche,longueur_gilet, client_id) VALUES (?,?,?,?,?)";
+
+    pool.query(sql, [poitrine,demi_ceinture,demi_hanche,longueur_gilet, clientId], (err, data) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, data.insertId);
+    });
+}
+
 module.exports={
-    getGiletMsByClientId
+    getGiletMsByClientId,
+    addGiletMs
 };

@@ -7,10 +7,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
+
+const jacketMSRouter=require('./routes/jacketMeasurments');
+const pantsMSRouter=require('./routes/pantMeasurments');
+const giletMSRouter=require('./routes/giletMeasurments');
 const clientsRouter = require("./routes/clients");
 const ordersRouter = require("./routes/orders");
 const administratorRouter = require("./routes/admin"); // Import your router
 
+app.use("/pantsMs/",pantsMSRouter);
+app.use("/giletMs/",giletMSRouter);
+app.use("/jacketMs/",jacketMSRouter);
 app.use("/clients", clientsRouter);
 app.use("/orders", ordersRouter);
 app.use("/", administratorRouter); // Use the router at the root path

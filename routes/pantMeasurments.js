@@ -3,7 +3,8 @@ const router = express.Router();
 
 const pantsController=require("../controllers/pantsMsController");
 
-router.get('/msps-client', pantsController.getPantsMsByClientId);
+router.get('/pantsMs-client', pantsController.getPantsMsByClientId);
+router.post("/addPantsMs",pantsController.addPantsMs );
 
 
 module.exports = router;

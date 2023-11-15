@@ -12,6 +12,20 @@ function getGiletMsByClientId(req,res){
     )
 }
 
+function addGiletMs(req,res){
+    const {clientId,poitrine,demi_ceinture,demi_hanche,longueur_gilet } = req.body;
+
+    giletMsModel.addGiletMs(clientId,poitrine,demi_ceinture,demi_hanche,longueur_gilet,(err,data)=>{
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error" });
+        }
+        return res.json({ message: "gilet ms created successfully", id: data });
+    })
+}
+
+
 module.exports={
     getGiletMsByClientId,
+    addGiletMs
 };
